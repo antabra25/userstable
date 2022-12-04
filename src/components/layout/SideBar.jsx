@@ -1,14 +1,21 @@
-import {Box,Typography,useTheme} from "@mui/material"
+import {Box, Typography, Paper} from "@mui/material"
 
 const SideBar = () => {
 
-    const theme = useTheme()
 
     return (
         <Box flex={1} sx={{
-            backgroundColor:theme.palette.primary.main,
+            bgcolor: 'background.paper',
+            borderRadius: '0.5rem',
+            marginLeft: '1rem',
         }}>
+            <Paper elevation="6" sx={{
+                backgroundColor: 'paper.default',
+                width: '100%',
+                height: '100%'
+            }}>
 
+            </Paper>
         </Box>
     )
 }
