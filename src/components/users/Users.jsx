@@ -1,17 +1,15 @@
 import UserTable from "./UserTable.jsx";
 import useFetchUsers from "../../hooks/useFetchUsers.js";
+import usePagination from "../../hooks/usePagination.js";
 import Loading from "../common/Loading.jsx";
 import {TextField, Pagination, Box, Typography} from '@mui/material'
 import {useState} from "react";
 
 
 const Users = () => {
-    const [page, setPage] = useState(1);
-    const {users, loading, error, searchUsers} = useFetchUsers({page, limit: 10});
+    const {page,handleChange,limit,skip}= usePagination();
+    const {users, loading, error, searchUsers} = useFetchUsers({limit,skip,page});
     const [search, setSearch] = useState('');
-    const handleChange = (event, value) => {
-        setPage(value);
-    }
 
     const handleSearch = (e) => {
         setSearch(e.target.value);
@@ -33,7 +31,7 @@ const Users = () => {
                 <UserTable users={users}/>
                 {loading && <Loading/>}
                 {error && <Typography variant="h5">Error</Typography>}
-                <Pagination count={3} page={page} onChange={handleChange}/>
+                <Pagination count={3} page={page} onChange={handleChange} color="secondary"/>
             </Box>
 
         </>

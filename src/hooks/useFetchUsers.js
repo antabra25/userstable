@@ -1,13 +1,12 @@
 import {useEffect, useState} from "react";
 import axios from 'axios'
 
-function UseFetchUsers({page, limit}) {
+function UseFetchUsers({limit, skip,page}) {
 
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(null);
     const [error, setError] = useState(false);
-    const pageSize = limit || 10;
-    const skip = (page - 1) * pageSize;
+
 
     const getUsers = async () => {
         const URL = `https://dummyjson.com/users?limit=${limit}&skip=${skip}&select=firstName,lastName,maidenName,age,gender,email,phone,username`
